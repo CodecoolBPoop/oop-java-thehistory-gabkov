@@ -9,12 +9,11 @@ public class TheHistoryArray implements TheHistory {
      */
     private String[] wordsArray = new String[0];
 
+
     @Override
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
         wordsArray = text.split("\\s");
-        //String[] wordsTemp = text.split("\\s");
-        //wordsArray = wordsTemp;
     }
 
     @Override
@@ -44,16 +43,25 @@ public class TheHistoryArray implements TheHistory {
     @Override
     public void clear() {
         //TODO: check the TheHistory interface for more information
+        wordsArray = new String[0];
     }
 
     @Override
     public void replaceOneWord(String from, String to) {
         //TODO: check the TheHistory interface for more information
-    }
+        String words = String.join(" ", wordsArray);
+        words = words.replace(from, to);
+        wordsArray = words.split("\\s");
+        }
 
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
+        String words = String.join(" ", wordsArray);
+        String from = String.join(" ", fromWords);
+        String to = String.join(" ", toWords);
+        words = words.replace(from, to);
+        wordsArray = words.split("\\s");
     }
 
     @Override
