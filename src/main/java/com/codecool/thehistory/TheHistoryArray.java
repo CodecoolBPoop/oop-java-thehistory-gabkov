@@ -49,19 +49,28 @@ public class TheHistoryArray implements TheHistory {
     @Override
     public void replaceOneWord(String from, String to) {
         //TODO: check the TheHistory interface for more information
-        String words = String.join(" ", wordsArray);
-        words = words.replace(from, to);
-        wordsArray = words.split("\\s");
+        for (int i = 0; i < wordsArray.length; i++) {
+            if (wordsArray[i].equals(from)) wordsArray[i] = to;
+            }
         }
 
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
-        String words = String.join(" ", wordsArray);
+        String to = String.join(" ", toWords);
+        int fromLen = fromWords.length;
+        String firstFromWord = fromWords[0];
+        for (int i = 0; i < wordsArray.length; i++) {
+            String current = wordsArray[i];
+        }
+
+
+
+        /*String words = String.join(" ", wordsArray);
         String from = String.join(" ", fromWords);
         String to = String.join(" ", toWords);
         words = words.replace(from, to);
-        wordsArray = words.split("\\s");
+        wordsArray = words.split("\\s");*/
     }
 
     @Override

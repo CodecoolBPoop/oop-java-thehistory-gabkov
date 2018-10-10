@@ -39,11 +39,26 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public void replaceOneWord(String from, String to) {
         //TODO: check the TheHistory interface for more information
+        for (int i = 0; i < wordsArrayList.size(); i++) {
+            if (wordsArrayList.get(i).equals(from)) wordsArrayList.set(i, to);
+        }
     }
 
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
+        String to = String.join(" ", toWords);
+        int fromLen = fromWords.length;
+        String firstFromWord = fromWords[0];
+        for (int i = 0; i < wordsArrayList.size() ; i++) {
+            String current = wordsArrayList.get(i);
+            if (current.equals(firstFromWord) && i+fromLen <= wordsArrayList.size()){
+                if (Arrays.asList(fromWords).equals(wordsArrayList.subList(i, i+fromLen))){
+                    wordsArrayList.subList(i, i+fromLen-1).clear();
+                    wordsArrayList.set(i, to);
+                }
+            }
+        }
     }
 
     @Override
