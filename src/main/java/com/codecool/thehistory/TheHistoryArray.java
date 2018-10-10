@@ -57,20 +57,34 @@ public class TheHistoryArray implements TheHistory {
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
-        String to = String.join(" ", toWords);
-        int fromLen = fromWords.length;
+        String[] to = {String.join(" ", toWords)};
+        String[] temp = new String[wordsArray.length];
         String firstFromWord = fromWords[0];
+        int fromLen = fromWords.length;
+        int toIncrementRemove = fromLen-1;
+        int j = 0;
+        int removed = 0;
+
         for (int i = 0; i < wordsArray.length; i++) {
             String current = wordsArray[i];
+            if (current.equals(firstFromWord) && i+fromLen <= wordsArray.length){
+                String[] toCompare = Arrays.copyOfRange(wordsArray, i, i+fromLen);
+                if (Arrays.equals(fromWords, toCompare)){
+                    System.arraycopy(to, 0, temp, j, 1);
+                    i+=fromLen-1 ;
+                    removed+= toIncrementRemove;
+                } else {
+                    System.arraycopy(wordsArray, i, temp, j, 1);
+                }
+            } else {
+                System.arraycopy(wordsArray, i, temp, j, 1);
+            }
+            j++;
         }
+        String[] finalArray = new String[temp.length-removed];
+        System.arraycopy(temp, 0, finalArray, 0, temp.length-removed);
+        wordsArray = finalArray;
 
-
-
-        /*String words = String.join(" ", wordsArray);
-        String from = String.join(" ", fromWords);
-        String to = String.join(" ", toWords);
-        words = words.replace(from, to);
-        wordsArray = words.split("\\s");*/
     }
 
     @Override
