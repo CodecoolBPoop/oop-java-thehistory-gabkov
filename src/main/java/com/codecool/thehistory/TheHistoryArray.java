@@ -84,7 +84,6 @@ public class TheHistoryArray implements TheHistory {
         String[] finalArray = new String[temp.length-removed];
         System.arraycopy(temp, 0, finalArray, 0, temp.length-removed);
         wordsArray = finalArray;
-
     }
 
     @Override
